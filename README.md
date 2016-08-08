@@ -2,7 +2,7 @@
 ## Target
 fyrelab sentri is a system using additional hardware such as webcams, microphones, temperatures sensors etc.
 to provide an intelligent home monitoring system as a baby monitor, burglar alarm or pet watch.
-It is easily configurable through [sentri-webtool](https://github.com/fyrelab/sentri-webtool)
+It is easily configurable through the included [webtool](https://github.com/fyrelab/sentri-webtool)
 
 ## Installing
 For a full installation follow our [installation guide](https://fyrelab.de/sentri/install#advanced)
@@ -26,7 +26,7 @@ Google Coding style with 120 letters expansion and disabled constant references 
 See https://github.com/darkclouder/styleguide
 
 ## Licensing
-fyrelab sentri is licensed under GPLv3. See `LICENSE.md` for further information.
+fyrelab sentri is licensed under GPLv3. See LICENSE.md for further information.
 
 ### Used libraries:
 * Boost (Boost license) [headers only, lib itself dynamically linked]
