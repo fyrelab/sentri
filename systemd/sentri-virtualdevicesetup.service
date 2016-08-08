@@ -1,0 +1,9 @@
+[Unit]
+Description=v4l2loopback
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/virtualvideodevicesetup
+
+[Install]
+WantedBy=default.target

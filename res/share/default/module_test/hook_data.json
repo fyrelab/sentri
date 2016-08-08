@@ -1,0 +1,11 @@
+{
+  "test": "Hans wurst",
+  "forms": {
+    "options": {
+      "test_dyn_dropdown": [
+        { "value": 1, "title": "FaceTime HD Camera" },
+        { "value": 2, "title": "FaceTime HD Camera 2" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+[Unit]
+Description=Modular home surveillance system
+After=sentri-videoaudio.service sentri-webtool.service
+
+[Service]
+Type=simple
+ExecStart=/opt/sentri/bin/release/core/core
+Restart=always
+TimeoutStopSec=1
+
+[Install]
+Also=sentri-webtool.service sentri-videoaudio.service
+WantedBy=default.target

@@ -1,0 +1,46 @@
+{
+  "id": "module_trigger",
+  "name": "Interval trigger module",
+	"version": "0.0.1",
+	"description": "This module automatically sends an event after a timeout, optionally in intervals.",
+	"configuration": [],
+	"events": [
+		{
+			"title": "Timeout trigger",
+			"description": "Sends an event after a timeout, optionally in intervals.",
+			"key": "auto_event",
+      "vars": [
+        { "key": "keyYouChose", "description": "The timeout trigger provides the variables you set in the Vars send configuration field." }
+      ],
+			"configuration": [
+				{
+					"title": "Initial timeout",
+					"description": "Time to wait after initial start of the system before event is sent",
+					"key": "timeout",
+					"type": "int",
+					"default": "5",
+          "min": "0",
+          "max": "86400"
+				},
+				{
+					"title": "Interval timeout",
+					"description": "Time to wait between events. Set to 0 to disable reoccurring trigger.",
+					"key": "timeout-between",
+					"type": "int",
+					"default": "30",
+          "min": "0",
+          "max": "86400"
+				},
+				{
+					"title": "Notification variables",
+					"description": "Vars to be sent with the event. The vars is required to have the form: key=value",
+					"key": "vars",
+					"type": "string",
+					"default": "key=value"
+				}
+			]
+		}
+	],
+	"actions": [
+	]
+}

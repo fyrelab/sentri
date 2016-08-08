@@ -1,0 +1,58 @@
+{
+	"id": "module_firebase",
+  "name": "Google Firebase Notifications",
+	"version": "0.0.1",
+	"description": "Send notifications with Google Firebase Notifications (e.g. to Android devices)",
+	"configuration": [
+		{
+			"title": "Babyfon Notifier Server",
+			"description": "The host address to a Babyfon Notifier Server using Firebase",
+			"key": "server",
+			"type": "string",
+			"default": "gcm.babyfon.fyrelab.de",
+			"constraints": "Only add a valid host name to a Babyfon Notifier Server"
+		},
+		{
+			"title": "Babyfon Notifier Server Port",
+			"description": "The port of the Babyfon Notifier Server using Firebase",
+			"key": "port",
+			"type": "int",
+			"default": "80",
+			"constraints": "Only add a valid port number",
+      "min": "1",
+      "max": "65535"
+		}
+	],
+	"events": [],
+	"actions": [
+		{
+			"title": "Send notification",
+			"description": "Send a notification to devices via Babyfon Notifier Server",
+			"key": "notify",
+			"configuration": [
+				{
+					"title": "Title",
+					"description": "Title of notification",
+					"key": "title",
+					"type": "string",
+					"default": "Babyfon alert"
+				},
+				{
+					"title": "Message",
+					"description": "Message body of the notification",
+					"key": "message",
+					"type": "string",
+					"default": "Your Babyfon recognized something!"
+				},
+				{
+					"title": "Show stream",
+					"description": "Open stream when reacting on notification",
+					"key": "useStream",
+					"type": "boolean",
+					"default": "false"
+				}
+			]
+		}
+	],
+	"hooks": [ "module_site" ]
+}

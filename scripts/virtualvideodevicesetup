@@ -1,0 +1,31 @@
+#!/bin/sh
+
+IFS=$'\n'
+devices=($(v4l2-ctl --list-devices))
+unset IFS
+
+len=${#devices[@]}
+
+videonr="video_nr="
+cardlabel="card_label="
+width_height=""
+
+for (( i=0; i < len; i+=2 ));
+do
+  cardlabel+="\"V$((i/2)):$((len/2 + i/2)) ${devices[${i}]::-1}\","
+  width_height+="max_width=1280 max_height=720 "
+done
+
+width_height=${width_height::-1}
+cardlabel=${cardlabel::-1}
+
+for (( i=0; i < len/2; i++ ));
+do
+  videonr+="$((i + (len / 2))),"
+done
+
+videonr=${videonr::-1}
+
+cmd="sudo modprobe v4l2loopback $videonr $cardlabel $width_height"
+
+eval $cmd

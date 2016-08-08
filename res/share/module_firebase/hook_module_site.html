@@ -1,0 +1,36 @@
+
+
+<div class="alert alert-warning" role="alert" ng-if='!$ctrl.data.token || $ctrl.data.token.length == 0'>
+  <strong>Warning!</strong>
+  Module does not have a service token yet.
+  Select server on module configuration and start the Babyfon to receive a token.
+</div>
+
+<div ng-if="$ctrl.data.token.length > 0" class="panel panel-default">
+  <button class="btn btn-secondary" type="button" data-toggle="collapse"
+          data-target="#collFBInstall" aria-expanded="false" aria-controls="collFBInstall">
+    Installation Guide
+  </button>
+  <div id="collFBInstall" class="collapse">
+    <p>
+      <h3>Step 1: Download App from Google Play</h3>
+      <a href="https://play.google.com/store/apps/details?id=de.fyrelab.babyfonnotifier" target="_blank">
+        <img alt="Get it on Google Play" src="/static/images/g-play.png" width="200">
+      </a>
+    </p>
+    <p>
+      <h3>Step 2: Register device</h3>
+      <p>
+        Navigate to this site on your Android device and click on the button &quot;Register device&quot;
+      </p>
+      <a href="babyfon://register?serverhost={{$ctrl.getConf('server')}}&serverport={{$ctrl.getConf('port')}}&token={{$ctrl.data.token}}"
+         role="button" class="btn btn-primary btn-lg hidden-sm-down">
+         Register device
+      </a>
+      <a href="babyfon://register?serverhost={{$ctrl.getConf('server')}}&serverport={{$ctrl.getConf('port')}}&token={{$ctrl.data.token}}"
+         role="button" class="btn btn-primary btn-lg btn-block hidden-md-up">
+         Register device
+      </a>
+    </p>
+  </div>
+</div>

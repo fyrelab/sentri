@@ -1,0 +1,15 @@
+--- ../dep/boost_1_60_0/boost/numeric/ublas/matrix_expression.hpp	2016-06-02 15:46:54.857780700 +0200
++++ ../dep/boost_1_60_0/boost/numeric/ublas/matrix_expression.hpp.new	2016-06-02 15:01:49.206483000 +0200
+@@ -2221,10 +2221,10 @@
+                         index1 = it1_.index1 ();
+                 }
+                 size_type index2 = (*this) ().size1 ();
+-                if (it2_ != it2_end_)
++                if (it2_ != it2_end_) {
+                     if (it2_.index1 () <= i_)
+                         ++ it2_;
+-                    if (it2_ != it2_end_) {
++                    if (it2_ != it2_end_)
+                         index2 = it2_.index1 ();
+                 }
+                 i_ = (std::min) (index1, index2);

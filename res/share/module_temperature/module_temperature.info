@@ -1,0 +1,71 @@
+{
+	"id": "module_temperature",
+  "name": "Temperature sensor",
+	"version": "0.0.1",
+	"description": "This module interacts with the temperature sensor and can detect exceeded or undershot temperatures",
+	"configuration": [
+		{
+			"title": "Polling interval",
+			"description": "Interval in seconds in which the temperature is read",
+			"key": "polling_interval",
+			"type": "int",
+			"default": "10",
+			"min": "1",
+			"max": "2147483647"
+		}
+	],
+	"events": [
+		{
+			"title": "Temperature exceeded",
+			"description": "A given temperature threshold was reached or exceeded",
+			"key": "temp_exceeded",
+			"configuration": [
+				{
+					"title": "Temperature threshold",
+					"description": "Maximum temperature in degrees Celsius",
+					"key": "max_temp",
+					"type": "float",
+					"default": "50.0",
+					"min": "-273.0",
+					"max": "1000.0"
+				}
+			],
+			"vars": [
+				{
+					"title": "Current temperature",
+					"key": "temp",
+					"type": "float",
+					"description": "The current temperature from the sensor in degrees Celsius"
+				}
+			]
+		},
+		{
+			"title": "Temperature undershot",
+			"description": "A given temperature threshold was undershot",
+			"key": "temp_undershot",
+			"configuration": [
+				{
+					"title": "Temperature threshold",
+					"description": "Minimum temperature in degrees Celsius",
+					"key": "min_temp",
+					"type": "float",
+					"default": "0.0",
+					"min": "-273.0",
+					"max": "1000.0"
+				}
+			],
+			"vars": [
+				{
+					"title": "Current temperature",
+					"key": "temp",
+					"type": "float",
+					"description": "The current temperature from the sensor in degrees Celsius"
+				}
+			]
+		}
+  ],
+	"actions": [
+
+	],
+	"hooks": [ "overview", "module_site" ]
+}

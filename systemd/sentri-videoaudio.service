@@ -1,0 +1,11 @@
+[Unit]
+Description=Audio and Video
+After=pulseaudio.service sentri-webtool.service
+
+[Service]
+Type=forking
+ExecStart=/opt/sentri/scripts/videoaudiosetup /.config/sentri/module_video/hook_data.json /.config/sentri/module_streaming/hook_data.json
+Restart=always
+
+[Install]
+WantedBy=default.target

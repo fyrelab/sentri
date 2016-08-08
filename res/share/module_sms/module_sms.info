@@ -1,0 +1,57 @@
+{
+	"id": "module_sms",
+  "name": "SMS delivery",
+	"version": "0.0.1",
+	"description": "The SMS delivery module sending a text message to mobile phones.",
+	"configuration": [
+		{
+			"title": "Sender",
+			"description":	"sender of the SMS",
+			"key": "from",
+			"type": "string",
+			"default": "Babyfon"
+		},
+    {
+			"title": "key",
+			"description": "key of the user",
+			"key": "user",
+			"type": "string",
+			"default": ""
+		},
+		{
+			"title": "pass",
+			"description": "pass of the user",
+			"key": "pass",
+			"type": "password",
+			"default": ""
+		}
+	],
+	"events": [
+	],
+	"actions": [
+		{
+			"title": "Send text message",
+			"description": "Sending a text message to the given number",
+			"key": "send",
+			"configuration": [
+				{
+					"title": "to",
+					"description": "Number/numbers of the receiver/reveivers (e.g. 491234567, 497654321)",
+					"key": "to",
+					"type": "string",
+					"default": "",
+					"regex": "^[0-9]+(, ?[0-9]+)*$",
+					"constraints": "Only add valid phone number.",
+					"required": "true"
+				},
+				{
+					"title": "body",
+					"description": "Body of the SMS. Add variables passed by the event by using %varname.",
+					"key": "body",
+					"type": "string",
+					"default": "Your Babyfon recognized something"
+				}
+			]
+		}
+	]
+}

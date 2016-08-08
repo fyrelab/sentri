@@ -1,0 +1,56 @@
+{
+  "id": "module_streaming",
+  "name": "Live Streaming",
+	"version": "0.0.1",
+	"description": "This module segments the captured data to stream HLS",
+	"configuration": [
+  {
+    "title": "Video Capturing Device",
+    "description": "",
+    "key": "video",
+    "type": "dyn-dropdown",
+    "default": "1"
+  },
+  {
+    "title": "Audio",
+    "description": "Enable or disable audio",
+    "key": "sound",
+    "type": "boolean",
+    "default": "false"
+  },
+  {
+    "title": "Audio Capturing Device",
+    "description": "",
+    "key": "audio",
+    "type": "dyn-dropdown",
+    "default": "0"
+  },
+  {
+    "title":"Input Framerate",
+    "description": "",
+    "key": "input_framerate",
+    "type": "string",
+    "default": "29.97",
+    "min": "1",
+    "max": "30"
+  },
+  {
+    "title":"Stream Quality",
+    "description": "High settings may lead to high CPU usage.",
+    "key": "quality",
+    "type": "dropdown",
+    "default": "1",
+    "options": [
+      { "value": "1", "title": "Low (320x180@10) RECOMMENDATION FOR RASPBERRY PI" },
+      { "value": "2", "title": "Medium (480x272@10)" },
+      { "value": "3", "title": "High (640x360@24)" },
+      { "value": "4", "title": "Ultra (1280x720@24)" }
+    ]
+  }
+	],
+	"events": [
+	],
+	"actions": [
+	],
+  "hooks": [ "overview", "module_site", "fullscreen" ]
+}

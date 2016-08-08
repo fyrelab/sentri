@@ -1,0 +1,167 @@
+{
+  "id": "module_test",
+  "name": "Test module",
+	"version": "0.0.1",
+	"description": "This is a test module to show functionality to module developers",
+	"configuration": [
+    {
+      "title": "Test String Input",
+      "description": "You can input a string",
+      "key": "string",
+      "type": "string",
+      "default": "DEFAULTVALUE",
+      "regex": "^[A-Z]+$",
+      "constraints": "Must be only big characters"
+    },
+    {
+      "title": "Test Int Input",
+      "description": "You can input a integer",
+      "key": "int",
+      "type": "int",
+      "default": "42",
+      "min": "5",
+      "max": "200"
+    },
+    {
+      "title": "Test Float Input",
+      "description": "You can input a float",
+      "key": "float",
+      "type": "float",
+      "default": "5.4",
+      "min": "-3.4",
+      "max": "200.001",
+      "step": "0.01"
+    },
+    {
+      "title": "Test Password Input",
+      "description": "You can input a password",
+      "key": "password",
+      "type": "password",
+      "default": "Secret!!"
+    },
+    {
+      "title": "Test Boolean Input",
+      "description": "You can check this box or let it unchecked",
+      "key": "boolean",
+      "type": "boolean",
+      "default": "false"
+    },
+    {
+      "title": "Test Dropdown Input",
+      "description": "You can choose a value from the dropdown",
+      "key": "dropdown",
+      "type": "dropdown",
+      "default": "100",
+      "options": [
+        { "value": "20", "title": "Zwanzig" },
+        { "value": "50", "title": "Fünfzig" },
+        { "value": "100", "title": "Hundert" },
+        { "value": "200", "title": "Zweihundert" }
+      ]
+    },
+    {
+      "title": "Test Dynamic Dropdown",
+      "description": "You can choose a value from the dynamic dropdown",
+      "key": "test_dyn_dropdown",
+      "type": "dyn-dropdown",
+      "default": "1"
+    },
+    {
+      "title": "Test Areapicker",
+      "description": "Choose the area you want to observe",
+      "key": "test_areapicker",
+      "type": "areapicker",
+      "default": "POLYGON((97 40,97 135,257 135,257 40))"
+    }
+	],
+	"events": [
+		{
+			"title": "Timeout trigger",
+			"description": "Sends an event after a timeout, optionally in intervals.",
+			"key": "auto_event",
+      "vars": [
+        {
+          "title": "A file",
+          "key": "firstVarKey",
+          "type": "file",
+          "description": "Contains Nothing and isn't really sent by the event because this module doesn't exist."
+        },
+        {
+          "title": "A string",
+          "key": "secondVarKey",
+          "type": "string",
+          "description": "This var contains something really important, not."
+        },
+        {
+          "title": "Another file",
+          "key": "andAnotherKey",
+          "type": "file",
+          "description": "Last but not least there is a third variable sent by this event!"
+        }
+      ],
+			"configuration": [
+				{
+					"title": "Initial timeout",
+					"description": "Time to wait after initial start of the system before event is sent",
+					"key": "timeout",
+					"type": "int",
+					"default": "5"
+				},
+				{
+					"title": "Interval timeout",
+					"description": "Time to wait between events. Set to 0 to disable reoccurring trigger.",
+					"key": "timeout-between",
+					"type": "int",
+					"default": "30"
+				},
+				{
+					"title": "Vars send",
+					"description": "Vars to be sent with the event. The vars is required to have the form: value=key",
+					"key": "vars",
+					"type": "string",
+					"default": "value=key"
+				}
+			]
+		}
+	],
+	"actions": [
+    {
+      "title": "Send E-Mail",
+      "description": "Sending an e-mail to the given address",
+      "key": "send",
+      "configuration": [
+        {
+          "title": "Receiver",
+          "description": "E-Mail Address of the receiver.",
+          "key": "to",
+          "type": "string",
+          "default": "",
+          "regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,63}((, ?| )[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,63})*$",
+          "constraints": "Only add valid e-mail addresses separated by comma or space"
+        },
+        {
+          "title": "Subject",
+          "description": "The subject the mail has. Add variables passed by the event by using %varname.",
+          "key": "subject",
+          "type": "string",
+          "default": "Babyfon alert"
+        },
+        {
+          "title": "Body",
+          "description": "Body of the mail. Add variables passed by the event by using %varname.",
+          "key": "body",
+          "type": "string",
+          "default": "Your Babyfon recognized something!"
+        },
+        {
+          "title": "Attachments",
+          "description": "Attachments send with the mail. Add the varnames separated by commas which contain the path of a file. For example: vidfile,image,soundrec",
+          "key": "attachments",
+          "type": "var-file-dropdown",
+          "default": ""
+        }
+      ]
+    }
+	],
+  "hooks": [ "overview", "module_site" ]
+}

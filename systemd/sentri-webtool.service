@@ -1,0 +1,11 @@
+[Unit]
+Description=Webtool for fyrelab sentri
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/node %h/opt/sentri/sentri-webtool/app.js
+Restart=always
+
+[Install]
+Also=sentri.service
+WantedBy=default.target

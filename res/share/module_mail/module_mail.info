@@ -1,0 +1,89 @@
+{
+	"id": "module_mail",
+  "name": "Mail delivery",
+	"version": "0.0.1",
+	"description": "This module can send emails as a response to events.",
+	"configuration": [
+		{
+			"title": "Sender",
+			"description": "The name of the sender of the emails send by this module.",
+			"key": "from",
+			"type": "string",
+			"default": "",
+			"regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,63}$",
+			"constraints": "Only add a valid e-mail address"
+		},
+		{
+			"title": "SMTP Server",
+			"description": "The address of the SMTP server used to send the email",
+			"key": "smtp_server",
+			"type": "string",
+			"default": ""
+		},
+		{
+			"title": "SMTP Port",
+			"description": "The SMTP port of the SMTP server",
+			"key": "smtp_port",
+			"type": "int",
+			"default": "587",
+			"min": "1",
+			"max": "65535"
+		},
+		{
+			"title": "Server user",
+			"description": "Username of the user on the SMTP server",
+			"key": "smtp_user",
+			"type": "string",
+			"default": ""
+		},
+		{
+			"title": "Server password",
+			"description": "Password of the user on the SMTP server",
+			"key": "smtp_pass",
+			"type": "password",
+			"default": ""
+		}
+	],
+	"events": [
+	],
+	"actions": [
+		{
+			"title": "Send E-Mail",
+			"description": "Sending an e-mail to the given address",
+			"key": "send",
+			"configuration": [
+				{
+					"title": "Receiver",
+					"description": "E-Mail address of the receiver.",
+					"key": "to",
+					"type": "string",
+					"default": "",
+					"regex": "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,63}((, ?| )[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,63})*$",
+					"constraints": "Only add valid e-mail addresses separated by comma or space",
+					"required": "true"
+				},
+				{
+					"title": "Subject",
+					"description": "The subject the mail has. Add variables passed by the event by using %varname.",
+					"key": "subject",
+					"type": "string",
+					"default": "Babyfon alert"
+				},
+				{
+					"title": "Body",
+					"description": "Body of the mail. Add variables passed by the event by using %varname.",
+					"key": "body",
+					"type": "string",
+					"default": "Your Babyfon recognized something!"
+				},
+				{
+					"title": "Attachments",
+					"description": "Attachments send with the mail. Add the varnames separated by commas which contain the path of a file. For example: vidfile,image,soundrec",
+					"key": "attachments",
+					"type": "var-file-dropdown",
+					"default": ""
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,23 @@
+{
+	"id": "module_test6",
+  "name": "Test 6",
+	"version": "0.0.1",
+	"description": "Test 6 module",
+	"configuration": [],
+	"events": [
+    {
+      "title": "Send",
+      "description": "",
+      "key": "send",
+      "configuration": []
+    }
+	],
+	"actions": [
+		{
+			"title": "Receive",
+			"description": "",
+			"key": "receive",
+			"configuration": []
+		}
+	]
+}

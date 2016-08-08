@@ -1,0 +1,54 @@
+{
+  "id": "module_noise_detection",
+  "name": "Noise detection",
+  "version": "0.4.0",
+  "description": "The noise detection module can detect conspicuous sounds and records them including a sound file.",
+  "configuration": [
+    {
+      "title": "Initial Threshold",
+      "description": "The initial value for the threshold to be detected as noise",
+      "key": "threshold",
+      "min": "0",
+      "type": "float",
+      "default": "1200000.0"
+    },
+    {
+      "title": "Initial calibration period",
+      "description": "The module calibrates to the normal silence threshold for an initial time period (in sec)",
+      "key": "initial_calibration_period",
+      "type": "int",
+      "min": "0",
+      "max": "200",
+      "default": "5"
+    }
+  ],
+  "events": [
+    {
+      "title": "Noise detection",
+      "description": "Sends an event after a noise is detected.",
+      "key": "noise_detection",
+      "vars": [
+      {
+        "title": "Audio File",
+        "key": "audioFile",
+        "type": "file",
+        "description": "The sound file that contains the noise."
+      }
+      ],
+      "configuration": [
+        {
+                "title": "Threshold multiplier",
+                "description": "How much louder than silence a sound has to be, to trigger a notification. For surveillance use a lower multiplier, e.g. 3-4, as a Babyphone use a higher multiplier, e.g. 6-7.",
+                "key": "threshold_overhead",
+                "type": "float",
+                "min": "1.5",
+                "max": "200",
+                "default": "5.0"
+        }
+				]
+	  }
+	],
+	"actions": [
+
+  ]
+}

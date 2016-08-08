@@ -1,0 +1,47 @@
+Watchdog Test:
+
+start/spawn test
+==========
+call start() or spawn a module
+
+expected behaviour:
+when the watchdog start method is called all modules in modules_ should be forked and present in process table
+they should have a session which SSID equals its PID, if they don't have their own session a log message should be present
+stating the error
+the associated module data struct must contain: valid PID of this module
+
+
+kill module test
+================
+kill a module and check its running state (OS and watchdog internal)
+
+expected behaviour: no child of core with PID of the killed process is present anymore
+all childs of the module are killed
+in both of these cases the corresponding processes are actually not running after the kill (no zombies)
+associated module data struct is updated: running false
+
+
+bury test
+=========
+bury a module
+
+expected behaviour: when a module is burried it is not running anymore and can't be spawned again until the whole core is
+restarted, the system message rule is triggered with a corresponding message (e.g. mail to user)
+
+resurrect test
+==============
+expected behaviour: the given module is killed and only restarted if it hasn't reached its critical mortality rate,
+if so it gets burried
+
+
+thread test
+===========
+expected behaviour:
+loop the following:
+  sleep check interval
+  for all modules that are not burried:
+    all modules that are actually running (OS) and running flag is set:
+      if hearbeat interval exceeded increase missed heartbeats, resurrect if max missed heartbeats are reached
+      if a module runs for continuous stability check interval decrease its mortality by a given decrease amount
+    only running flag is set
+      resurrect module

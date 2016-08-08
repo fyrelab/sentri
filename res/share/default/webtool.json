@@ -1,0 +1,10 @@
+{
+  "users":[
+    {
+      "user":"alarm",
+      "email":"contact@fyrelab.de",
+      "password_salt":"f66csehtde2ajupa1tg2v5cdic7j02uzy34yhzs2v67lyuv7vi",
+      "password_hash":"997cc24409003c3d23ea7d0a1eec14daba2c0a16d83d6a61626118018e49fb4f"
+    }
+  ]
+}

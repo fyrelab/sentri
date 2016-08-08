@@ -1,0 +1,73 @@
+#!/bin/sh
+
+_evalBg() {
+    eval nohup "$@" &>/dev/null &
+}
+
+# video
+
+IFS=$'\n'
+allvideodevices=($(v4l2-ctl --list-devices))
+unset IFS
+len=${#allvideodevices[@]}
+
+x=0
+for (( i=0; i < len; i++ ));
+do
+  str=$((grep -Eo '^V[0-9]:[0-9]') <<< ${allvideodevices[i]})
+  if [ ! -z "$str" ];then
+   videodevices[x]=${str:1}
+   videodevicenames[x]=$((grep -E '^V[0-9]:[0-9]') <<< ${allvideodevices[i]} | sed 's/^V[0-9]:[0-9] //' | sed 's/ (.*://')
+   videoarr+="{\"value\": \"${videodevices[x]: -1}\", \"title\": \"${videodevicenames[x]}\"},"
+   ((x++))
+  fi
+done
+videoarr=${videoarr::-1}
+
+# audio
+
+IFS=$'\n'
+allaudiodevices=($(pacmd list-sources | grep -E 'name:'))
+allaudiodevicenames=($(pacmd list-sources | grep -E 'device.description'))
+unset IFS
+len2=${#allaudiodevices[@]}
+
+x=0
+for (( i=0; i < len2; i++ ));
+do
+   allaudiodevices[i]=$(( sed 's/^ //') <<< ${allaudiodevices[i]} | sed 's/name: <//' | sed 's/>//' | sed 's/ //')
+   allaudiodevicenames[i]=$(( sed 's/device.description = //') <<< ${allaudiodevicenames[i]})
+   allaudiodevicenames[i]=${allaudiodevicenames[i]::-1}
+   allaudiodevicenames[i]=${allaudiodevicenames[i]:1}
+   audioarr+="{\"value\": \"${allaudiodevices[i]}\", \"title\": \"Device: ${allaudiodevicenames[i]}\"},"
+done
+
+audioarr=${audioarr::-1}
+
+# write audio and video devices in json file
+
+text="{ \"forms\": { \"options\": {\"video\": [ $videoarr ], \"audio\": [ $audioarr ] } } }"
+
+for var in "$@"
+do
+  touch "$HOME$var"
+  echo "$text" > "$HOME$var"
+done
+
+rm "/tmp/sentri" 2> /dev/null
+mkdir -p "/tmp/sentri"
+mkdir -p "/tmp/sentri/stream"
+mkdir -p "/tmp/sentri/video"
+mkdir -p "/tmp/sentri/audio"
+mkdir -p "/tmp/sentri/img"
+
+#setting up ffmpeg
+
+len=${#videodevices[@]}
+
+for (( i=0; i < len; i++ ));
+do
+  source=${videodevices[i]:0:1}
+  target=${videodevices[i]: -1}
+  _evalBg "ffmpeg -re -f v4l2 -s 1280x720 -i /dev/video${source} -f v4l2 /dev/video${target}"
+done
