@@ -4,8 +4,11 @@ fyrelab sentri is a system using additional hardware such as webcams, microphone
 to provide an intelligent home monitoring system as a baby monitor, burglar alarm or pet watch.
 It is easily configurable through [sentri-webtool](https://github.com/fyrelab/sentri-webtool)
 
-## install
-Run `./configure` first, then `make all` and then `make install` with root privileges.
+## Install
+For a full installation follow our [installation guide](https://fyrelab.de/sentri/install#advanced)
+
+If all dependencies are satisfied you can simply run `./configure` first,
+then `make all` and then `make install` with root privileges to build the system.
 
 ### Building
 Building with `make` with the following targets
