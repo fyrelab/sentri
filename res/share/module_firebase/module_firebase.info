@@ -9,7 +9,7 @@
 			"description": "The host address to a Babyfon Notifier Server using Firebase",
 			"key": "server",
 			"type": "string",
-			"default": "gcm.babyfon.fyrelab.de",
+			"default": "gcm.sentri.fyrelab.de",
 			"constraints": "Only add a valid host name to a Babyfon Notifier Server"
 		},
 		{
